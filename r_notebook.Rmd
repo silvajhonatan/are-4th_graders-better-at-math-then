@@ -1,0 +1,47 @@
+---
+title: "Are 4th graders smarter then 8th graders?"
+author: "Jhonatan da Silva"
+date: "October, 2018"
+output: html_notebook
+---
+
+### Are 4th graders smarter then 8th graders?  
+
+&nbsp;&nbsp;&nbsp; First of all let me tell you why I'm exploring this dataset in particular, feel free to jump this if you want to have more fun on the data side of this analysis. 
+ 
+&nbsp;&nbsp;&nbsp; I'm currently learning more on probability and statistics to advance my knowledge in the AI field in general. I love using what I've learned to make something. Looking for resources on the web I found this great website [Gapminder](https://www.gapminder.org), on the Data section we have datasets of all kind of information. As my knowledge in statistics is at a basic level yet, I took some datasets to try to make inferences and some exploratory data analysis.
+
+&nbsp;&nbsp;&nbsp; This dataset consists of the scores for the math score of the standardized test for some countries and throughout of some years. But we only have enough data for 2007, a lot of data is missing from this dataset, so for this analysis I'm only using the 2007 scores. Here you can see the first 6 rows of the dataset
+
+```{r, echo=FALSE, message=FALSE}
+library(dplyr)
+library(ggplot2)
+library(ggthemes)
+library(tidyr)
+library(gridExtra)
+
+math4 <- read.csv("data/mathScore4.csv", header=TRUE,stringsAsFactors = FALSE) %>%
+  select('geo','X2007')
+colnames(math4) <- c('countries','fourth_grade')
+
+math8 <- read.csv("data/mathScore8.csv", header=TRUE,stringsAsFactors = FALSE) %>%
+  select('geo','X2007')
+colnames(math8) <- c('countries','eighth_grade')
+
+mathScores <- inner_join(math4,math8,by="countries")
+mathScores <- gather(mathScores,Grades,score,-countries)
+head(mathScores)
+```
+### Results
+```{r, echo=FALSE, message=FALSE}
+
+mathScores %>% group_by(Grades) %>% ggplot(aes(score,fill=Grades)) + 
+  geom_density(alpha=.5)  +
+  ylab('') + xlab('') + 
+  ggtitle('Math Score on Standardized Test') +theme_economist()
+```
+
+
+### For the curious enogh
+Here's the related code
+[Are 4th graders smarter then 8th graders??](https://github.com/silvajhonatan/do-you-trust-your-gut)
