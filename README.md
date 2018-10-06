@@ -6,10 +6,10 @@ I'm currently learning more on probability and statistics to advance my knowledg
 
 This dataset consists of the scores for the math score of the standardized test for some countries and throughout of some years. But we only have enough data for 2007, a lot of data is missing from this dataset, so for this analysis I'm only using the 2007 scores. Here you can see the first 6 rows of the dataset
 
-![](monty_hall_experiment_files/figure-markdown_strict/unnamed-chunk-2-1.png)
+![](outputs/mathScores_head.png)
 
 Now we can make a density plot to see actually which of the ones have the highest scores on the math standardized test.
 
-![](monty_hall_experiment_files/figure-markdown_strict/unnamed-chunk-2-1.png)
+![](figs/final_result.png)
 
 We see that we have very similar scores for eighth and fourth graders in the standardized test. As I couldn't find actual numbers on how this data was generated and how many people were in this sample I can't (yet) make assumption about the population in general. But this was a fun exploratory data analysis case to practice some of the things I've beeing learning on R. Actually I've colleceted as well the rate of employement and unemployment also the mean years that people continue in school after high school. In the next analysis I'm going to analyse if we could go about making assumptions about how this values changes around countries based on this scores.
